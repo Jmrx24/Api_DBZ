@@ -7,7 +7,7 @@ import java.util.ArrayList;
 @RestController
 public class Controller {
 
-    public static ArrayList<Personaje> listPeople = DataHanding.LeerFicheroPeople("Personajes.json");
+    public static ArrayList<Personaje> listPeople = DataHanding.LeerFichero("Personajes.json");
     public static ArrayList<Parameters> listRequests = DataHanding.leerPeticiones();
     public static ArrayList<Fusion> listStarship = DataHanding.LeerFicheroStarships("Fusiones.json");
 
