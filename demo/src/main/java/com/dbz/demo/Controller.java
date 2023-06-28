@@ -7,7 +7,11 @@ import java.util.ArrayList;
 @RestController
 public class Controller {
 
-    @GetMapping("/Car")
+    public static ArrayList<Personaje> listPeople = DataHanding.LeerFicheroPeople("Personajes.json");
+    public static ArrayList<Parameters> listRequests = DataHanding.leerPeticiones();
+    public static ArrayList<Fusion> listStarship = DataHanding.LeerFicheroStarships("Fusiones.json");
+
+    @GetMapping("/Personaje")
     public ArrayList<Personaje> listaCoches()
     {
         LeerJson reader = new LeerJson();
@@ -17,8 +21,8 @@ public class Controller {
         return listaC;
     }
 
-    @PostMapping("/addCoche")
-    public ArrayList<Personaje> create(@RequestBody Personaje per1)
+    @PostMapping("/personaje")
+    public ArrayList<Personaje> create(@RequestBody Parameters param)
     {
         DataHanding dataHanding = new DataHanding();
         ArrayList<Personaje> listaC;
