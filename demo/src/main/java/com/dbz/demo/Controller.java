@@ -7,33 +7,46 @@ import java.util.ArrayList;
 @RestController
 public class Controller {
 
-    public static ArrayList<Personaje> listPeople = DataHanding.LeerFichero("Personajes.json");
-    public static ArrayList<Parameters> listRequests = DataHanding.leerPeticiones();
-    public static ArrayList<Fusion> listStarship = DataHanding.LeerFicheroStarships("Fusiones.json");
-
-    @GetMapping("/Personaje")
-    public ArrayList<Personaje> listaCoches()
-    {
-        LeerJson reader = new LeerJson();
-        //Leemos el reason e introducimos los elementos en un arraylist
-        ArrayList<Personaje> listaC = reader.LeerFichero("Personajes.json");
-        //Mostramos los elementos leidos
-        return listaC;
-    }
+    public static ArrayList<Personaje> listPerson = LeerJson.leerFicheroPersonajes("Personajes.json");
+    public static ArrayList<Parameters> listRequests = LeerJson.leerPeticiones();
+    public static ArrayList<Fusion> listFus = LeerJson.leerFicheroFusiones("Fusiones.json");
 
     @PostMapping("/personaje")
     public ArrayList<Personaje> create(@RequestBody Parameters param)
     {
-        DataHanding dataHanding = new DataHanding();
-        ArrayList<Personaje> listaC;
-        listaC = dataHanding.AnadirObjeto1(per1,"Personajes.json");
-        EscribirJson escribirJSON = new EscribirJson();
-        escribirJSON.escribirFichero(listaC);
-        return listaC;
+        if (listRequests==null){
+            listRequests= new ArrayList<>();
+        }
+        listRequests.add(param);
+
+        //listRequest = Metodos.mandarParametros(param);
+        if (param.getTipo().equals("fusion")){
+
+            Fusion fus = DataHanding.getFusion(param);
+            listFus.add(fus);
+
+            //Ahora escribimos en el fichero JSON
+            DataHanding.escribirFus(listFus);
+
+        }else {
+            if (listPerson ==null){
+                listPerson = new ArrayList<Personaje>();
+            }
+            //Cogemos una persona de la API
+            Personaje person = DataHanding.getPersonaje(param);
+            //Los añadimos a la lista
+            listPerson.add(person);
+
+            //Ahora escribimos en el fichero JSON
+            DataHanding.escribirPersonaje(listPerson);
+
+        }
+        DataHanding.escribirPeticion(listRequests);
+        return listPerson;
     }
 
     //Vamos a borrar buscando el id
-    @DeleteMapping("/Personaje")
+    /*@DeleteMapping("/Personaje")
     public ArrayList<Personaje> delete(@RequestParam String name)
     {
         DataHanding dataHanding = new DataHanding();
@@ -43,7 +56,7 @@ public class Controller {
         EscribirJson escribirJSON = new EscribirJson();
         escribirJSON.escribirFichero(listaC);
         return listaC;
-    }
+    }*/
 
 
 
