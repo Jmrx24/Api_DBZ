@@ -7,6 +7,8 @@ public class Data {
     private String origin;
     private String species;
 
+    private String method_used;
+
     public Data() {
     }
 
@@ -14,6 +16,10 @@ public class Data {
         this.birthday = birthday;
         this.origin = origin;
         this.species = species;
+    }
+
+    public Data(String method_used) {
+        this.method_used = method_used;
     }
 
     public String getBirthday() {
@@ -38,5 +44,13 @@ public class Data {
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public String getMethod_used() {
+        return method_used;
+    }
+
+    public void setMethod_used(String method_used) {
+        this.method_used = method_used;
     }
 }

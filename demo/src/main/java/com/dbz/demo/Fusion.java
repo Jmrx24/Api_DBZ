@@ -3,14 +3,15 @@ package com.dbz.demo;
 public class Fusion {
 
     private String name;
-    private String method_used;
+
+    private Data data;
 
     public Fusion() {
     }
 
-    public Fusion(String name, String method_used) {
+    public Fusion(String name, Data data) {
         this.name = name;
-        this.method_used = method_used;
+        this.data = data;
     }
 
     public String getName() {
@@ -19,13 +20,5 @@ public class Fusion {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getMethod_used() {
-        return method_used;
-    }
-
-    public void setMethod_used(String method_used) {
-        this.method_used = method_used;
     }
 }

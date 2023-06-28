@@ -21,7 +21,9 @@ public class Controller {
 
         //listRequest = Metodos.mandarParametros(param);
         if (param.getTipo().equals("fusion")){
-
+            if (listFus==null){
+                listFus= new ArrayList<>();
+            }
             Fusion fus = DataHanding.getFusion(param);
             listFus.add(fus);
 
