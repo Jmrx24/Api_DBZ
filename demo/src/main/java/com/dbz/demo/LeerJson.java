@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class LeerJson {
 
-    public static ArrayList<Coche> LeerFichero(String ruta){
+    public static ArrayList<Personaje> LeerFichero(String ruta){
         //En esta clase se lee el fichero JSON de menores de 60
-        ArrayList <Coche> listaJSON = new ArrayList<>();
+        ArrayList <Personaje> listaJSON = new ArrayList<>();
         try {
             //Creamos el objeto Gson
             Gson gson = new Gson();
@@ -27,7 +27,7 @@ public class LeerJson {
             }
 
             //Usamos la libreria Gson para leer el fichero Json e introducirlo en un arraylist
-            listaJSON = new Gson().fromJson(reader, new TypeToken<ArrayList<Coche>>() {}.getType());
+            listaJSON = new Gson().fromJson(reader, new TypeToken<ArrayList<Personaje>>() {}.getType());
 
 
             //Cerramos el reader

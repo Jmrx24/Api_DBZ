@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 public class EscribirJson {
 
-    public static void escribirFichero(ArrayList<Coche> coches) {
+    public static void escribirFichero(ArrayList<Personaje> coches) {
 
         try {
             // Creamos una nueva clase Json
             Gson gson = new Gson();
 
             //Creamos la clase que permite escribir en el fichero Json
-            FileWriter writer = new FileWriter("Almacen.json");
+            FileWriter writer = new FileWriter("Personajes.json");
             try {
                 gson.toJson(coches, writer);
                 writer.close();
